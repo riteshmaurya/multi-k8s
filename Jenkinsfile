@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 pipeline {
     environment {
-    registry = "riteshmaurya/complex"
+    registry = "riteshmaurya"
     registryCredential = 'dockerhub'
   }
     agent { dockerfile true }
@@ -38,6 +38,7 @@ pipeline {
             } 
             }
         }   
+        // ss
         stage('Upload multi-worker to docker'){
             steps{
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
