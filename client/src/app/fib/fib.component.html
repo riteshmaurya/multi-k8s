@@ -1,0 +1,21 @@
+<div>
+  <form [formGroup]="fibForm" (submit)=onSubmit()>
+    <label>
+      Enter your index:
+      <input type="text" formControlName="index">
+    </label>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+<br>
+<div>
+  Indecies I have seen:
+  {{renderSeenIndecies()}}
+</div>
+<br>
+<div>
+  Calculated Values:
+  <div *ngFor="let item of renderValues() | keyvalue">
+    {{item.key}} : {{item.value}}
+  </div>
+</div>
