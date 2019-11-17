@@ -4,7 +4,7 @@ pipeline {
     registry = "riteshmaurya"
     registryCredential = 'dockerhub'
   }
-    //agent { dockerfile true }
+    agent { docker { image 'node:alpine'} }
     stages {
         stage('Test') {
             steps {
