@@ -4,7 +4,8 @@ pipeline {
     registry = "riteshmaurya"
     registryCredential = 'dockerhub'
   }
-    agent none
+  agent none
+    // agent { docker { image 'node:alpine'} true }
     stages {
         stage('Test') {
             steps {
@@ -12,6 +13,11 @@ pipeline {
             }
         }
         stage('Upload multi-client to docker'){
+            agent {
+                dockerfile{
+                    dir './client'
+                }
+            }
             steps{
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
                 sh "docker build -t riteshmaurya/multi-client:${BUILD_NUMBER} ./client"
@@ -21,7 +27,12 @@ pipeline {
             }
         }
         stage('Upload multi-nginx to docker'){
-            steps{
+            agent {
+                dockerfile{
+                    dir './nginx'
+                }
+            }
+            steps{                
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
                 sh "docker build -t riteshmaurya/multi-nginx:${BUILD_NUMBER} ./"
 
@@ -30,6 +41,11 @@ pipeline {
             }
         }
         stage('Upload multi-api to docker'){
+           agent {
+                dockerfile{
+                    dir './server'
+                }
+            }            
             steps{
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
                 sh "docker build -t riteshmaurya/multi-api:${BUILD_NUMBER} ./server"
@@ -40,6 +56,11 @@ pipeline {
         }   
         // ss
         stage('Upload multi-worker to docker'){
+           agent {
+                dockerfile{
+                    dir './worker'
+                }
+            }            
             steps{
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
                 sh "docker build -t riteshmaurya/multi-worker:${BUILD_NUMBER} ./worker"
