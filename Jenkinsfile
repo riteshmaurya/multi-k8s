@@ -34,7 +34,7 @@ pipeline {
             }
             steps{                
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
-                sh "docker build -t riteshmaurya/multi-nginx:${BUILD_NUMBER} ./"
+                sh "docker build -t riteshmaurya/multi-nginx:${BUILD_NUMBER} ./nginx"
 
                 sh "docker push riteshmaurya/multi-nginx:${BUILD_NUMBER}" 
             } 
