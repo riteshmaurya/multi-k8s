@@ -7,11 +7,11 @@ pipeline {
   agent none
     // agent { docker { image 'node:alpine'} true }
     stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         sh 'node --version'
+        //     }
+        // }
         stage('Upload multi-client to docker'){
             agent {
                 dockerfile{
