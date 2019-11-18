@@ -22,7 +22,7 @@ pipeline {
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
                 sh "docker build -t riteshmaurya/multi-client:${BUILD_NUMBER} ./client"
 
-                sh "docker push riteshmaurya/multi-client:latest" 
+                sh "docker push riteshmaurya/multi-client:${BUILD_NUMBER}" 
             } 
             }
         }
@@ -36,7 +36,7 @@ pipeline {
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
                 sh "docker build -t riteshmaurya/multi-nginx:${BUILD_NUMBER} ./"
 
-                sh "docker push riteshmaurya/multi-nginx:latest" 
+                sh "docker push riteshmaurya/multi-nginx:${BUILD_NUMBER}" 
             } 
             }
         }
@@ -50,7 +50,7 @@ pipeline {
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
                 sh "docker build -t riteshmaurya/multi-api:${BUILD_NUMBER} ./server"
 
-                sh "docker push riteshmaurya/multi-api:latest" 
+                sh "docker push riteshmaurya/multi-api:${BUILD_NUMBER}" 
             } 
             }
         }   
@@ -65,7 +65,7 @@ pipeline {
             withDockerRegistry([credentialsId: "dockerhub", url: ""]){
                 sh "docker build -t riteshmaurya/multi-worker:${BUILD_NUMBER} ./worker"
 
-                sh "docker push riteshmaurya/multi-worker:latest" 
+                sh "docker push riteshmaurya/multi-worker:${BUILD_NUMBER}" 
             } 
             }
         }                  
