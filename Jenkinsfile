@@ -18,22 +18,22 @@ pipeline {
                     dir './client'
                 }
             }
-            steps{
-            withDockerRegistry([credentialsId: "dockerhub", url: ""]){
+            steps {
+            withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
                 sh "docker build -t riteshmaurya/multi-client:${BUILD_NUMBER} ./client"
 
                 sh "docker push riteshmaurya/multi-client:${BUILD_NUMBER}" 
             } 
             }
         }
-        stage('Upload multi-nginx to docker'){
+        stage('Upload multi-nginx to docker') {
             agent {
                 dockerfile{
                     dir './nginx'
                 }
             }
             steps{                
-            withDockerRegistry([credentialsId: "dockerhub", url: ""]){
+            withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
                 sh "docker build -t riteshmaurya/multi-nginx:${BUILD_NUMBER} ./nginx"
 
                 sh "docker push riteshmaurya/multi-nginx:${BUILD_NUMBER}" 
@@ -47,7 +47,7 @@ pipeline {
                 }
             }            
             steps{
-            withDockerRegistry([credentialsId: "dockerhub", url: ""]){
+            withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
                 sh "docker build -t riteshmaurya/multi-api:${BUILD_NUMBER} ./server"
 
                 sh "docker push riteshmaurya/multi-api:${BUILD_NUMBER}" 
@@ -55,7 +55,7 @@ pipeline {
             }
         }   
         // ss
-        stage('Upload multi-worker to docker'){
+        stage('Upload multi-worker to docker') {
            agent {
                 dockerfile{
                     dir './worker'

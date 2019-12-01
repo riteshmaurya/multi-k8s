@@ -17,3 +17,21 @@ spec:
           image: riteshmaurya/multi-api
           ports:
             - containerPort: 6000
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service 
+            - name: REDIS_PORT
+              value: '6379'
+            - name: PGUSER
+              value:  postgres
+            - name: PGHOST
+              value:  postgres-cluster-ip-service
+            - name: PGDATABASE
+              value:  postgres
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef: 
+                  name: pgpassword
+                  key: PGPASSWORD
+            - name: PGPORT
+              value: '5432'                                                                                  
